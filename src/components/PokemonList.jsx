@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 class PokemonList extends React.Component {
     render () {
         const pokemonList = pokemons.map(e => (
-        <li key={e.id}>
+        <div key={e.id}>
             <img src={`${process.env.PUBLIC_URL}/pokemon.json-master/sprites/` +  ( '000' + e.id ).slice( -3 ) +`MS.png`} alt="Logo" />
             <Link to={'/pokemon/' + e.id}>{e.name}</Link>
-        </li>
+        </div>
         ))
         return (
         <div>

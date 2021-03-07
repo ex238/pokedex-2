@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 class PokemonInfo extends React.Component {
     render () {
@@ -9,6 +10,7 @@ class PokemonInfo extends React.Component {
         <div>
           <img src={`${process.env.PUBLIC_URL}/pokemon.json-master/pokemon_dot/` + pokemon.id + `.png`} alt="Logo" />
           <h1>{pokemon.name}</h1>
+          <div><Link to='/'>TOP</Link></div>
         </div>
       )
     }
