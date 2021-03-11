@@ -5,18 +5,20 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import PokemonDetailModal from './PokemonDetailModal';
+import PokemonDetailDrawer from './PokemonDetailDrawer';
 
 const useStyles = makeStyles({
     root: {
-        width: 120,
-        height: 120,
+        width: 170,
+        height: 240,
     },
     media: {
-        width: 50,
-        height: 50
+        width: 100,
+        height: 100
     },
     divStyle: {
-        width: 400,
+        width: 1700,
         display: "flex",
         flexWrap: "wrap",
     },
@@ -35,6 +37,8 @@ export default function PokemonList() {
             <Typography gutterBottom variant="body2" component="h6">
                 <Link to={'/pokemon/' + e.id}>{e.name}</Link>
             </Typography>
+            <PokemonDetailModal id={e.id} name={e.name}/>
+            <PokemonDetailDrawer id={e.id} name={e.name}/>
             </CardContent>
         </Card>
     ))
@@ -58,5 +62,20 @@ const pokemons = [
     {id:12,name:"バタフリー"},
     {id:13,name:"ビードル"},
     {id:14,name:"シミズ"},
-    {id:15,name:"スピアー"}
+    {id:15,name:"スピアー"},
+    {id:16,name:"ポッポ"},
+    {id:17,name:"ピジョン"},
+    {id:18,name:"ピジョット"},
+    {id:19,name:"コラッタ"},
+    {id:20,name:"ラッタ"},
+    {id:21,name:"オニスズメ"},
+    {id:22,name:"オニドリル"},
+    {id:23,name:"アーボ"},
+    {id:24,name:"アーボック"},
+    {id:25,name:"ピカチュウ"},
+    {id:26,name:"ライチュウ"},
+    {id:27,name:"サンド"},
+    {id:28,name:"サンドパン"},
+    {id:29,name:"ニドラン雌"},
+    {id:30,name:"ニドリーナ"}
 ];
