@@ -12,10 +12,12 @@ const useStyles = makeStyles({
     root: {
         width: 170,
         height: 240,
+        margin: 10,
+        backgroundColor: 'rgba(209, 220, 226, 0.75)',
     },
     media: {
         width: 100,
-        height: 100
+        height: 100,
     },
     divStyle: {
         width: 1700,
