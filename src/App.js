@@ -4,13 +4,11 @@ import {
   Route
 } from "react-router-dom";
 import PokemonList from './components/PokemonList';
-import PokemonDetail from './components/PokemonDetail';
 
 function App() {
   return (
     <Router>
       <Route component={PokemonList} />
-      <Route path='/pokemon/:id' component={PokemonDetail} />
     </Router>
   );
 }

@@ -1,17 +1,14 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import PokemonDetailModal from './PokemonDetailModal';
-import PokemonDetailDrawer from './PokemonDetailDrawer';
+import PokemonDetail from './PokemonDetail';
 
 const useStyles = makeStyles({
     root: {
-        width: 170,
-        height: 240,
+        width: 150,
+        height: 150,
         margin: 10,
         backgroundColor: 'rgba(209, 220, 226, 0.75)',
     },
@@ -36,11 +33,7 @@ export default function PokemonList() {
                 title="Contemplative Reptile"
             />
             <CardContent>
-            <Typography gutterBottom variant="body2" component="h6">
-                <Link to={'/pokemon/' + e.id}>{e.name}</Link>
-            </Typography>
-            <PokemonDetailModal id={e.id} name={e.name}/>
-            <PokemonDetailDrawer id={e.id} name={e.name}/>
+            <PokemonDetail id={e.id} name={e.name}/>
             </CardContent>
         </Card>
     ))

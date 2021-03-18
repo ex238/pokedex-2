@@ -1,52 +1,62 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
 
-class PokemonDetail extends React.Component {
-    render () {
-      const {params} = this.props.match
-      const id = parseInt(params.id, 10)
-      const pokemon = pokemons.filter(e => e.id === id)[0]
-      return (
-        <div>
-          <img src={`${process.env.PUBLIC_URL}/pokemon.json-master/pokemon_dot/` + pokemon.id + `.png`} alt="Logo" />
-          <h1>{pokemon.name}</h1>
-          <div><Link to='/'>TOP</Link></div>
+const useStyles = makeStyles({
+    list: {
+        width: 250,
+        height: 800,
+    },
+    fullList: {
+        width: 'auto',
+    },
+});
+
+export default function PokemonDetail(props) {
+    const classes = useStyles();
+    const [state, setState] = React.useState({
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
+    });
+
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        return;
+        }
+
+        setState({ ...state, [anchor]: open });
+    };
+
+    const PokemonDetailDrawer = (anchor) => (
+        <div
+        className={clsx(classes.list, {
+            [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+        })}
+        role="presentation"
+        onKeyDown={toggleDrawer(anchor, false)}
+        >
+        <h1>{props.name}</h1>
+        <h2>{props.id}</h2>
+        <img src={`${process.env.PUBLIC_URL}/pokemon.json-master/pokemon_dot/` + props.id + `.png`} alt="Logo" />
+        <h4　 onClick={toggleDrawer(anchor, false)}>閉じる</h4>
         </div>
-      )
-    }
-  }
+    );
 
-export default PokemonDetail;
+    return (
+        <div>
+        {['bottom'].map((anchor) => (
+            <React.Fragment key={anchor}>
+            <Button onClick={toggleDrawer(anchor, true)}>{props.name}</Button>
 
-const pokemons = [
-  {id:1,name:"フシギダネ"},
-  {id:2,name:"フシギソウ"},
-  {id:3,name:"フシギバナ"},
-  {id:4,name:"ヒトカゲ"},
-  {id:5,name:"リザード"},
-  {id:6,name:"リザードン"},
-  {id:7,name:"ゼニガメ"},
-  {id:8,name:"カメール"},
-  {id:9,name:"カメックス"},
-  {id:10,name:"キャタピー"},
-  {id:11,name:"トランセル"},
-  {id:12,name:"バタフリー"},
-  {id:13,name:"ビードル"},
-  {id:14,name:"シミズ"},
-  {id:15,name:"スピアー"},
-  {id:16,name:"ポッポ"},
-  {id:17,name:"ピジョン"},
-  {id:18,name:"ピジョット"},
-  {id:19,name:"コラッタ"},
-  {id:20,name:"ラッタ"},
-  {id:21,name:"オニスズメ"},
-  {id:22,name:"オニドリル"},
-  {id:23,name:"アーボ"},
-  {id:24,name:"アーボック"},
-  {id:25,name:"ピカチュウ"},
-  {id:26,name:"ライチュウ"},
-  {id:27,name:"サンド"},
-  {id:28,name:"サンドパン"},
-  {id:29,name:"ニドラン雌"},
-  {id:30,name:"ニドリーナ"}
-];
+            <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+                {PokemonDetailDrawer(anchor)}
+            </Drawer>
+            </React.Fragment>
+        ))}
+        </div>
+    );
+}
