@@ -1,45 +1,55 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import InputBase from "@material-ui/core/InputBase";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-    width: '100%',
-    },
-    heading: {
-    fontSize: theme.typography.pxToRem(15),
-    },
-    secondaryHeading: {
-        fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.text.secondary,
-    },
-    column: {
-        flexBasis: '33.33%',
-    },
+  root: {
+    color: "#fff",
+    backgroundColor: "#333",
+  },
+  input: {
+    color: "#fff",
+    backgroundColor: "#515151",
+    marginLeft: theme.spacing(4),
+    paddingLeft: theme.spacing(1),
+    width: 120,
+    // flex: 1,
+  },
+  iconButton: {
+    color: "#fff",
+    padding: 10,
+  },
 }));
 
-export default function Header() {
-    const classes = useStyles();
+export default function Header(props) {
+  const classes = useStyles();
 
-    return (
-    <div className={classes.root}>
-        <Accordion>
-        <AccordionSummary
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-        >
-            <div className={classes.column}>
-                <Typography className={classes.heading}>Pokedex</Typography>
-            </div>
-        </AccordionSummary>
-        <AccordionDetails>
-            <TextField id="standard-basic" label="Standard" />
-        </AccordionDetails>
-        </Accordion>
-    </div>
-    );
+  return (
+    <React.Fragment>
+      <AppBar position="fixed" className={classes.root}>
+        <Toolbar>
+          <div class="logo">
+            <b>
+              <span>P</span>
+              <span>o</span>k<span></span>e<span></span>
+              <span>d</span>e<span></span>x<span></span>
+            </b>
+          </div>
+          <InputBase className={classes.input} placeholder="ポケモン検索" />
+          <IconButton
+            type="submit"
+            className={classes.iconButton}
+            aria-label="search"
+          >
+            <SearchIcon />
+          </IconButton>
+          <i class="nes-charmander"></i>
+        </Toolbar>
+      </AppBar>
+    </React.Fragment>
+  );
 }
