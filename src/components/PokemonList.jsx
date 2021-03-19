@@ -8,7 +8,7 @@ import PokemonDetail from './PokemonDetail';
 const useStyles = makeStyles({
     root: {
         width: 150,
-        height: 150,
+        height: 200,
         margin: 10,
         backgroundColor: 'rgba(209, 220, 226, 0.75)',
     },
